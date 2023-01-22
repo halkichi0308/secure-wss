@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<body>
+
+    <input type="button" id="btn" value="send">
+    <p id="msg"></p>
+
+    <script>
+        var sock = new WebSocket('ws://cert.sec-io.net:5001');
+        let msg = document.getElementById('msg')
+        // 接続
+        sock.addEventListener('open', function (e) {
+            console.log('Socket 接続成功');
+        });
+
+        // サーバーからデータを受け取る
+        sock.addEventListener('message', function (e) {
+            console.log(e.data);
+            msg.innerHTML = e.data
+        });
+
+        document.addEventListener('DOMContentLoaded', function (e) {
+            // サーバーにデータを送る
+            document.getElementById('btn').addEventListener('click', function (e) {
+                sock.send('hello');
+            });
+        });
+    </script>
+</body>
+
+</html>
