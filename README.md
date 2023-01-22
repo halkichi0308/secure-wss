@@ -22,5 +22,5 @@ npm run https-start
 ### 2. start secure websocket server
 
 ```
-npm run https-start
+npm run wss-start
 ```
